@@ -1,4 +1,4 @@
-package com.alex.pruebatecnicaredsinergia.data.model
+package com.alex.pruebatecnicaredsinergia.data.local.model
 
 data class Product(
     val name: String,
