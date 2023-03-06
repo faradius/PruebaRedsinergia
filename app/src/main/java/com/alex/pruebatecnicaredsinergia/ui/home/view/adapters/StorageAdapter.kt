@@ -9,7 +9,9 @@ import com.alex.pruebatecnicaredsinergia.data.local.model.Location
 import com.alex.pruebatecnicaredsinergia.data.local.model.Storage
 import com.alex.pruebatecnicaredsinergia.databinding.ItemStorageBinding
 
-class StorageAdapter(private val storageList:List<Location>) :RecyclerView.Adapter<StorageAdapter.StorageHolder>(){
+class StorageAdapter(private val onClickListener: (Int) -> Unit) :RecyclerView.Adapter<StorageAdapter.StorageHolder>(){
+
+    private var storageList:List<Location> = mutableListOf()
 
     inner class StorageHolder(private val binding: ItemStorageBinding):RecyclerView.ViewHolder(binding.root){
        fun bind(itemLocation: Location) = with(binding){
@@ -17,9 +19,14 @@ class StorageAdapter(private val storageList:List<Location>) :RecyclerView.Adapt
            tvTypeLocation.text = itemLocation.type
            ivLocation.setImageResource(R.drawable.ic_account)
 
-//           root.setOnClickListener { onClickListener(itemLocation.id) }
+           root.setOnClickListener { onClickListener(itemLocation.idProduct) }
        }
 
+    }
+
+    fun submit(locationList: List<Location>){
+        storageList = locationList
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StorageHolder {

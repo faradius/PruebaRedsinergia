@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alex.pruebatecnicaredsinergia.R
 import com.alex.pruebatecnicaredsinergia.data.local.model.Location
@@ -19,8 +21,16 @@ import com.alex.pruebatecnicaredsinergia.ui.home.view.adapters.StorageAdapter
 class StorageListFragment : Fragment() {
 
     private lateinit var binding: FragmentStorageBinding
-    private lateinit var productList: ArrayList<Product>
     private lateinit var locationList: ArrayList<Location>
+
+    private val storageAdapter: StorageAdapter = StorageAdapter {
+        findNavController().navigate(
+            R.id.action_storageListFragment_to_productDetailFragment,
+            bundleOf(
+                "id" to it
+            )
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,8 +47,8 @@ class StorageListFragment : Fragment() {
 
     fun setupRecyclerView(){
         binding.rvLocations.layoutManager = LinearLayoutManager(requireContext())
-        val adapter = StorageAdapter(assignId())
-        binding.rvLocations.adapter = adapter
+        storageAdapter.submit(assignId())
+        binding.rvLocations.adapter = storageAdapter
 
     }
 
@@ -50,6 +60,7 @@ class StorageListFragment : Fragment() {
             locationList[i].idProduct = i + 1
         }
 
+        Log.d("TAG", "assignId: $locationList")
         return locationList
     }
 
