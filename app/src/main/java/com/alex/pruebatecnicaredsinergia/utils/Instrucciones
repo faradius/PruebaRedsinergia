@@ -1,3 +1,11 @@
 ---INSTRUCCIONES---
 
 1.-Leer el archivo JSON en Android Studio
+
+
+
+1.- validar si el (volumen del producto = numero de letras de la ubicación)
+2.- validar si el (peso del producto es par o impar)
+    2.1 - si es par, multiplicar numero de letras de la ubicación por 1.5 despues guardar el SS base
+    2.2 - si es impar, multiplicar numero de letras del tipo de ubicación por 1 despues guardar el SS base
+3.- multiplicar el SS base correspondiente por 50%
