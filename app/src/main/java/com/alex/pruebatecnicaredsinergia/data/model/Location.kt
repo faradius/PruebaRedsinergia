@@ -10,5 +10,5 @@ data class Location(
     var status: Int,
     var ssT: Double,
     var ssN: Double,
-    var ssF: Double
+    var ssMax: Double
 )
