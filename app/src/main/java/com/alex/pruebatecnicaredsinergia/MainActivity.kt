@@ -3,8 +3,10 @@ package com.alex.pruebatecnicaredsinergia
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.alex.pruebatecnicaredsinergia.data.local.model.Location
+import com.alex.pruebatecnicaredsinergia.data.local.model.Product
 import com.alex.pruebatecnicaredsinergia.data.local.model.Storage
-import com.alex.pruebatecnicaredsinergia.data.model.*
+
 import com.google.gson.Gson
 import java.io.InputStreamReader
 
