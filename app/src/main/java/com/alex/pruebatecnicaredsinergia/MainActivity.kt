@@ -205,7 +205,7 @@ class MainActivity : AppCompatActivity() {
         for (location in locationList) {
             for (product in productList) {
                 if (location.idProduct == product.id) {
-                    Log.d("TAG", "match:Product: ${product.name} - Location: ${location.name}")
+                    Log.d("TAG", "match:Product: ${product.name} - Location: ${location.name} | SS: ${location.ssMax}")
                 }
             }
             ssTotal += location.ssMax
