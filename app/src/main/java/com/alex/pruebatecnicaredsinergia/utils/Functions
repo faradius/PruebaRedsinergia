@@ -1,0 +1,39 @@
+package com.alex.pruebatecnicaredsinergia.utils
+
+1.- loadStorageEntity:
+Este metodo permite leer archivo Json que se encuentra localmente y devuelve la información a un modelo de datos de Kotlin
+
+2.- getProductsFromJson:
+Este metodo permite obtener los productos del archivo json
+
+3.- getLocationsFromJson:
+Este metodo permite obtener las locaciones del archivo json
+
+4.- assignLocationId:
+Este metodo asigna a cada locación un ID
+
+5.- assignProductId
+Este metodo asigna a cada producto un ID
+
+
+
+
+6.- getNumLettersLocations
+Este metodo calcula el numero de letras con respecto al nombre y tipo de locación
+
+
+7.- calculateBaseAptitude
+Se calculca la aptitud base de todas las locaciones con respecto al nombre y tipo
+
+8.- calculateBaseAptitudeBonus
+Se calcula la aptitud base con el aumento del 50% con respecto si es Par o Impar obteniendo su SSMAX
+
+9.- matchLocationWithProductBonus
+Se localiza las ubicaciones con bonus y evalua si existe uno o mas locaciones y lo almacena en la mejor locacion
+
+10.- matchLocationWithProductUnassigned
+Se asigna los productos faltantes a una locación y se le asigna el valor SSMax dependiendo si es PAR o IMPAR
+
+
+11.- matchLocationWithProduct
+Se muestra la relación de las locaciones y sus respectivod productos y el SS total

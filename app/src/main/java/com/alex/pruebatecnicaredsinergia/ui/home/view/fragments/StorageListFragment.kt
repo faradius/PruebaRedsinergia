@@ -7,21 +7,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alex.pruebatecnicaredsinergia.R
-import com.alex.pruebatecnicaredsinergia.data.local.model.Location
-import com.alex.pruebatecnicaredsinergia.data.local.model.Product
-import com.alex.pruebatecnicaredsinergia.data.local.provider.DataProvider.Companion.getLocationsFromJson
-import com.alex.pruebatecnicaredsinergia.data.local.provider.DataProvider.Companion.getProductsFromJson
 import com.alex.pruebatecnicaredsinergia.databinding.FragmentStorageBinding
 import com.alex.pruebatecnicaredsinergia.ui.home.view.adapters.StorageAdapter
+import com.alex.pruebatecnicaredsinergia.ui.home.viewmodel.StorageViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class StorageListFragment : Fragment() {
 
+    private val viewModel by viewModels<StorageViewModel>()
     private lateinit var binding: FragmentStorageBinding
-    private lateinit var locationList: ArrayList<Location>
 
     private val storageAdapter: StorageAdapter = StorageAdapter {
         findNavController().navigate(
@@ -36,32 +35,27 @@ class StorageListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        subscribeLocations()
         return inflater.inflate(R.layout.fragment_storage, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentStorageBinding.bind(view)
+        viewModel.getLocations()
         setupRecyclerView()
     }
 
     fun setupRecyclerView(){
         binding.rvLocations.layoutManager = LinearLayoutManager(requireContext())
-        storageAdapter.submit(assignId())
         binding.rvLocations.adapter = storageAdapter
 
     }
 
-    private fun assignId(): List<Location>{
-        locationList = getLocationsFromJson()
-
-        for (i in locationList.indices){
-            locationList[i].id = i + 1
-            locationList[i].idProduct = i + 1
+    private fun subscribeLocations(){
+        viewModel.locations.observe(viewLifecycleOwner){ locations ->
+            storageAdapter.submit(locations!!)
         }
-
-        Log.d("TAG", "assignId: $locationList")
-        return locationList
     }
 
 }

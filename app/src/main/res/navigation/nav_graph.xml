@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/productDetailFragment"
-        android:name="com.alex.pruebatecnicaredsinergia.ui.home.view.fragments.ProductDetailFragment"
+        android:name="com.alex.pruebatecnicaredsinergia.ui.detail.view.fragments.ProductDetailFragment"
         android:label="fragment_product_detail"
         tools:layout="@layout/fragment_product_detail" />
 </navigation>
