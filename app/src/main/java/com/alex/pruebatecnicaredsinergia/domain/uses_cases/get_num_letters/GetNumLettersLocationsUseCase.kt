@@ -8,9 +8,9 @@ import javax.inject.Inject
 class GetNumLettersLocationsUseCase @Inject constructor(private val repository: StorageRepository) {
 
     suspend operator fun invoke(): StorageResult<ArrayList<Location>>{
-        val locationList = repository.getLocations() as ArrayList<Location>
+        val locationList = repository.getLocations()
 
-        for (location in locationList) {
+        for (location in locationList as ArrayList<Location>) {
             val numLettersName = location.name.filter { !it.isWhitespace() }.length
             val numLettersType = location.type.filter { !it.isWhitespace() }.length
 

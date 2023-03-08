@@ -6,7 +6,7 @@ import dagger.Provides
 import java.io.InputStreamReader
 import javax.inject.Inject
 
-class DataFromJSON {
+class DataFromJSON @Inject constructor() {
     //Este metodo permite leer archivo Json que se encuentra localmente y devuelve la información a un modelo de datos de Kotlin
     fun loadStorageEntity(file: String): Storage {
         val loader = InputStreamReader(this.javaClass.classLoader?.getResourceAsStream(file))

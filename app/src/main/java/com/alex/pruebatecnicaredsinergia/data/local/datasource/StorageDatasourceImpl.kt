@@ -8,7 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class StorageDatasourceImpl(private val api: DataFromJSON) : StorageDatasource {
+class StorageDatasourceImpl @Inject constructor(private val api: DataFromJSON) : StorageDatasource {
 
     //Este metodo permite obtener los productos del archivo json
     override suspend fun getProductsFromJson(): StorageResult<ArrayList<Product>> {
