@@ -1,11 +1,49 @@
 ---INSTRUCCIONES---
 
-1.-Leer el archivo JSON en Android Studio
+1.- Crear modelos para poder convertir el Json a objetos de Kotlin
+2.- Leer el archivo JSON y que devuelva la información a un modelo de datos en Android Studio
+3.- Obtener la lista de productos y las locaciones del archivo JSON
+
+Antes de empezar con el problema primero realizo unas configuraciones para poder hacer la relacion de la locacion con el producto
+4.- Para poder manipular de mejor manera le asigne un ID a los productos y locaciones
+
+5.- Despues, creo un metodo que me permita contar cuantas letras tiene "Nombre de Locación" y "Tipo de locación" excluyendo los espacios
+    y esos datos los guardo en las variables de numLettersNameLocation y numLettersTypeLocation del respectivo modelo de datos de la locacion,
+    este conteo lo hago para todas las locaciones sin contemplar las variables de restriccion que se mencionan en el problema
+
+6.- Despues se calcula la aptitud Base (SS) de todas las locaciones sin contemplar las variables de restricción, pero aqui lo guarde en dos
+    dos variables que defini en el modelo que viene siendo SSN (Aptitud Base Con respecto al numero de letras deL nombre de la locación) y
+    SST (Aptitud Base Con respecto al numero de letras del tipo de locación), para SSN se hizo este calculo: 1.5 * numero de letras del nombre de ubicación
+    y  1 * numero de letras tipo de ubicación, al tener los resultados del SSN y SST se los asigno a todas las locaciones, con el motivo de
+    facilitar la relación del producto y la localización para mas adelante
+
+7.- Despues se saca la aptitud base aumentado en un 50%, para obtener este incremento se debe cumplir con una condición la cual es que el
+    volumen del producto debe ser igual al numero de letras del nombre de la locación, entonces lo que se hace es hacer este calulo pero ya
+    aqui contemple si el peso del producto es par o impar para obtener la aptitud base Maxima, aqui unicamente tendra su aptitud maxima para los
+    que tengan ese bonus.
+
+Despues de hacer los preparativos ya se empieza apartir de aqui la relación de la localización con su respectivo producto
+
+8.- Primero que nada se recorre cada producto en todas las localizaciones entrando en la primera condición que es "product.volume == location.numLettersNameLocation"
+    esto se hace primero por que el SSMax lo tendria los que tienen bonus asi que opte por iniciar por esa parte, dentro del if tenemos un
+    ciclo when en donde evalua si el producto que esta analizando se puede ubicar en uno o mas locaciones, y para poder tener eso necesitamos
+    hacer uso de un contador, si el contador es 1 se asignara el producto a la primera locación que encuentre esto ocacionará que el estatus
+    tanto del producto y la locación queden asignados con el valor 1, despues guardamos en el modelo de locaciones el id del producto,
+    despues tenemos dos variables como temporales que nos permitira conocer el id de la locación que encontro primero y su sstTemporal, estas variables
+    nos ayudará a comparar la locación que se asigno antes con respecto a la que encuentre posteriormente, el ssT sera nuestro metodo de comparación,
+    ya que por parte del ssN no se muestra un factor deferenciador al realizar el acomodo de los productos con respecto a las locaciones
+
+    Ahora si el contador sea mayor o igual a 2 entraria en otra condición en donde evalua si el sstTemporal es mayor al sst encontrado en esta iteración,
+    o tambien si el sstTemporal es igual al sst encontrado en esta iteración, para ambos casos lo que se hara es asignarle el id del producto
+    a esa locación y poner el estatus a 1 y volvemos a iterar la lista de locaciones para eliminar la locación anterior que se le fue asignado el producto
+    ya que esa no seria su mejor lugar y ahi ya pondriamos el id del producto en 0 y el estatus en 0, con esto hicimos uso de las variables temporales
+    sstTemporal y el idLocation, al terminar el recorrido ponemos las variables temporales en 0 nuevamente
+
+9.- por ultimo tenemos lugares sin ubicar y productos sin asignar, estos practicamente no tienen bonus y solamente tiene la condición si es par o impar
+    por lo tanto recorremos cada producto con sus respectivos lugares pero en esta condición hacemos uso del estatus del producto y de la locació,
+    aqui validamos que productos no tienen una locación asignado, por lo que si encuentra un lugar pues se le asigna el id correspondiente y se sobre escribe
+    el valor del SSMax con respecto si es par o impar
+
+Al tener esto tendriamos la siguiente relación:
 
 
-
-1.- validar si el (volumen del producto = numero de letras de la ubicación)
-2.- validar si el (peso del producto es par o impar)
-    2.1 - si es par, multiplicar numero de letras de la ubicación por 1.5 despues guardar el SS base
-    2.2 - si es impar, multiplicar numero de letras del tipo de ubicación por 1 despues guardar el SS base
-3.- multiplicar el SS base correspondiente por 50%

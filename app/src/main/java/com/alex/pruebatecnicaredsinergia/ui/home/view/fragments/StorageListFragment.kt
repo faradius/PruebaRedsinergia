@@ -46,6 +46,7 @@ class StorageListFragment : Fragment() {
         setupRecyclerView()
     }
 
+    //Este metodo configura el recyclerView
     private fun setupRecyclerView(){
         binding.rvLocations.layoutManager = LinearLayoutManager(requireContext())
         storageAdapter.submit(matchLocationWithProduct())
@@ -196,32 +197,18 @@ class StorageListFragment : Fragment() {
     private fun matchLocationWithProduct(): ArrayList<Location>{
         val locationList = getNumLettersLocations()
         val productList = assignProductId()
-        var ssTotal = 0.0
 
+        //Se calculca la aptitud base de todas las locaciones con respecto al nombre y tipo
         calculateBaseAptitude()
 
         //Se calcula la aptitud base con el aumento del 50% con respecto si es Par o Impar obteniendo su SSMAX
         calculateBaseAptitudeBonus(locationList, productList)
-
 
         //Se localiza las ubicaciones con bonus y evalua si existe uno o mas locaciones y lo almacena en la mejor locacion
         matchLocationWithProductBonus(locationList, productList)
 
         //Se asigna los productos faltantes a una locación y se le asigna el valor SSMax dependiendo si es PAR o IMPAR
         matchLocationWithProductUnassigned(locationList, productList)
-
-        //Se imprime la relación de las locaciones y sus respectivod productos y el SS total
-        for (location in locationList) {
-            for (product in productList) {
-                if (location.idProduct == product.id) {
-                    Log.d("TAG", "match:Product: ${product.name} - Location: ${location.name}")
-                }
-            }
-            ssTotal += location.ssMax
-        }
-
-        //se imprime el SSTOTAL MAXIMO alcanzado
-        Log.d("TAG", "SS TOTAL | $ssTotal")
 
         return locationList
     }

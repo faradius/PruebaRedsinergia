@@ -57,12 +57,8 @@ class ProductDetailFragment : Fragment() {
                 binding.tvProductName.text = product.name
                 binding.tvWeightProduct.text = product.weight.toString()
                 binding.tvVolumeProduct.text = product.volume.toString()
-
-                Log.d("TAG", "getProduct: $product")
                 break
             }
-
-            Log.d("TAG", "getProduct: $product")
         }
     }
 
