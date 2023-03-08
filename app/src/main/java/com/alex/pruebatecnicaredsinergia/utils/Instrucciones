@@ -46,4 +46,15 @@ Despues de hacer los preparativos ya se empieza apartir de aqui la relación de 
 
 Al tener esto tendriamos la siguiente relación:
 
+15:27:46.642  D  match:Product: Televisores - Location: Estado de México | SS: 13.5
+15:27:46.642  D  match:Product: Teléfono móvil - Location: Guanajuato | SS: 22.5
+15:27:46.642  D  match:Product: Enchufes en hogar inteligente - Location: Nuevo León | SS: 20.25
+15:27:46.642  D  match:Product: Localizador de llaves - Location: Quintana Roo | SS: 18.0
+15:27:46.642  D  match:Product: Robot de cocina - Location: San Luis Potosí | SS: 13.5
+15:27:46.642  D  match:Product: Tablet - Location: Querétaro | SS: 12.0
+15:27:46.642  D  match:Product: Robot aspirador de limpieza - Location: Puebla | SS: 13.5
+15:27:46.642  D  match:Product: Cámara inalámbrica - Location: Hidalgo | SS: 12.0
+15:27:46.642  D  match:Product: Portátil y ordenador de mesa - Location: Guerrero | SS: 18.0
+15:27:46.642  D  match:Product: Relojes - Location: Nayarit | SS: 15.75
+15:27:46.642  D  SS TOTAL | 159.0
 

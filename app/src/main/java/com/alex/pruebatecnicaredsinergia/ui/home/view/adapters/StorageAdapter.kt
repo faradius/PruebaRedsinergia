@@ -1,12 +1,10 @@
 package com.alex.pruebatecnicaredsinergia.ui.home.view.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.alex.pruebatecnicaredsinergia.R
 import com.alex.pruebatecnicaredsinergia.data.local.model.Location
-import com.alex.pruebatecnicaredsinergia.data.local.model.Storage
 import com.alex.pruebatecnicaredsinergia.databinding.ItemStorageBinding
 
 class StorageAdapter(private val onClickListener: (Int) -> Unit) :RecyclerView.Adapter<StorageAdapter.StorageHolder>(){
@@ -17,7 +15,7 @@ class StorageAdapter(private val onClickListener: (Int) -> Unit) :RecyclerView.A
        fun bind(itemLocation: Location) = with(binding){
            tvNameLocation.text = itemLocation.name
            tvTypeLocation.text = itemLocation.type
-           ivLocation.setImageResource(R.drawable.ic_account)
+           ivLocation.setImageResource(R.drawable.almacen)
 
            root.setOnClickListener { onClickListener(itemLocation.idProduct) }
        }

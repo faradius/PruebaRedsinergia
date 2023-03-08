@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alex.pruebatecnicaredsinergia.R
 import com.alex.pruebatecnicaredsinergia.data.local.model.Location
@@ -15,6 +16,7 @@ import com.alex.pruebatecnicaredsinergia.data.local.model.Product
 import com.alex.pruebatecnicaredsinergia.data.local.provider.DataProvider.Companion.getLocationsFromJson
 import com.alex.pruebatecnicaredsinergia.data.local.provider.DataProvider.Companion.getProductsFromJson
 import com.alex.pruebatecnicaredsinergia.databinding.FragmentStorageBinding
+
 import com.alex.pruebatecnicaredsinergia.ui.home.view.adapters.StorageAdapter
 
 
@@ -49,6 +51,7 @@ class StorageListFragment : Fragment() {
     //Este metodo configura el recyclerView
     private fun setupRecyclerView(){
         binding.rvLocations.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvLocations.addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
         storageAdapter.submit(matchLocationWithProduct())
         binding.rvLocations.adapter = storageAdapter
 
@@ -193,7 +196,7 @@ class StorageListFragment : Fragment() {
             }
         }
     }
-
+    //Se muestra la relación de las locaciones y sus respectivos productos
     private fun matchLocationWithProduct(): ArrayList<Location>{
         val locationList = getNumLettersLocations()
         val productList = assignProductId()
