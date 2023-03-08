@@ -48,7 +48,7 @@ class ProductDetailFragment : Fragment() {
         return productList
     }
 
-    fun getProduct(id : Int){
+    private fun getProduct(id : Int){
         val newProductList = asignIdProduct()
 
         for (product in newProductList){
