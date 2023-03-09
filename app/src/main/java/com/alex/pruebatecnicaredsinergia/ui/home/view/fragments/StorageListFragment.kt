@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alex.pruebatecnicaredsinergia.R
+import com.alex.pruebatecnicaredsinergia.data.local.model.Location
 import com.alex.pruebatecnicaredsinergia.databinding.FragmentStorageBinding
 import com.alex.pruebatecnicaredsinergia.ui.home.view.adapters.StorageAdapter
 import com.alex.pruebatecnicaredsinergia.ui.home.viewmodel.StorageViewModel
@@ -54,7 +55,9 @@ class StorageListFragment : Fragment() {
 
     private fun subscribeLocations(){
         viewModel.locations.observe(viewLifecycleOwner){ locations ->
+
             storageAdapter.submit(locations!!)
+
         }
     }
 
